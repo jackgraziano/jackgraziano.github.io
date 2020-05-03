@@ -107,7 +107,7 @@
 
 
   $("#fileupload").fileupload({
-    url: "http://localhost:3000/upload_files",
+    url: "https://zerostaging.herokuapp.com/upload_files",
     dataType: "json",
       // Enable image resizing, except for Android and Opera,
       // which actually support image resizing, but fail to
@@ -174,7 +174,7 @@
 
     // ajax
     $.ajax({
-      url: "http://localhost:3000/api/v1/users/",
+      url: "http://https://zerostaging.herokuapp.com/api/v1/users/",
       type: 'post',
       dataType: 'json',
       contentType: 'application/json',
