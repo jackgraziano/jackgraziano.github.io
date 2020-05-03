@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exemplo de uso da API de cadastro</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha256-KM512VNnjElC30ehFwehXjx1YCHPiQkOPmqnrWtpccM=" crossorigin="anonymous"></script>
+
+    <script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>    
+    <script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.iframe-transport/1.0.1/jquery.iframe-transport.js" integrity="sha256-InrFZygDs8irr2NBoNOX9zYMxzUlsEJqgwq3xvhdKUg=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.13.0/js/jquery.fileupload.min.js" integrity="sha256-2zintoa4Kk6NAQ/C4gVS/3iwPUgjlvxaHkc/Cviokpk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.13.0/js/jquery.fileupload-process.min.js" integrity="sha256-S3e7M0WpQvp9GSYKUnU2scKhARIjFYTtGv6TArqBP6k=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.13.0/js/jquery.fileupload-image.min.js" integrity="sha256-X7EoV6iXlHbGiLLoof897KlNVRkdYZsd320SNT63Ops=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.13.0/css/jquery.fileupload.min.css" integrity="sha256-61g7gUn3l34rCtn25w4OWCrLuw8GYTmgwUDeXFAKxsU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.13.0/css/jquery.fileupload-ui.min.css" integrity="sha256-WAS61C4/KucmRV1l6dXdZC6IA9TubaoBSTpeMf0g+3M=" crossorigin="anonymous" />
+
+</head>
+<body>
+
+  <div class="container">
+    <h1>Exemplo de uso da API de cadastro</h1>
+
+    <p>Não está sendo feita validação ou masking dos campos no frontend.</p>
+
+    <form id="formCadastro">
+
+      <div class="form-group">
+        <label>Nome Completo</label>
+        <input type="text" class="form-control" id="inputFullName" placeholder="Nome completo">
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+      </div>
+
+      <p>Inserir campo de verificação de email. Validar no frontend</p>
+
+      <div class="form-group">
+        <label>País</label>
+        <input type="text" class="form-control" id="inputCountry" aria-describedby="emailHelp" placeholder="País">
+      </div>
+
+      <div class="form-group">
+        <label>Data de nascimento</label>
+        <input type="date" class="form-control" id="inputBirthday" placeholder="Enter Birthday">
+      </div>
+
+      <div class="form-group">
+        <label>Telefone Celular</label>
+        <input type="text" class="form-control" id="inputMobile" placeholder="Telefone celular">
+      </div>
+
+      <div class="form-group">
+        <label>CPF</label>
+        <input type="text" class="form-control" id="inputCPF" placeholder="CPF">
+      </div>
+
+      <!-- DOCUMENTOS -->
+      <div class="form-group hidden user_documents_documents">
+        <input type="hidden" id="user_documents_documents">
+      </div>
+
+      <div class="form-group">
+        <p>Envio de documentos</p>
+        <label class="btn btn-primary">
+          Escolher arquivos
+          <span style="display: none">   
+            <div id="file-upload-container">
+              <input id="fileupload" type="file" name="files[]" multiple="" accept=".jpeg,.jpg,.png,.pdf">
+            </div>
+          </span>
+        </label>
+        <div id="chosenFiles" style="font-size:0.9rem"></div>
+      </div>
+      <!-- FIM DOS DOCUMENTOS -->
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+      </div>
+
+      <p>Inserir campo de verificação de password.</p>
+
+
+      <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+
+  </div>
+
+</body>
+
+
+<script type="text/javascript">
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // ENVIO DE DOCUMENTOS
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+  $("#fileupload").fileupload({
+    url: "http://localhost:3000/upload_files",
+    dataType: "json",
+      // Enable image resizing, except for Android and Opera,
+      // which actually support image resizing, but fail to
+      // send Blob objects via XHR requests:
+      //disableImageResize: /Android(?!.*Chrome)|Opera/
+      //    .test(window.navigator && navigator.userAgent),
+      disableImageResize: false,
+      imageMaxWidth: 800,
+      imageMaxHeight: 800,
+      imageCrop: true, // Force cropped images  
+
+    add: function(e, data) {
+      data.context = $('<p class="file">')
+        .append($('<a target="_blank">').text(data.files[0].name))
+        .appendTo($('#chosenFiles'));
+      data.submit();
+    },
+    progress: function(e, data) {
+      var progress = parseInt((data.loaded / data.total) * 100, 10);
+      data.context.css("background-position-x", 100 - progress + "%");
+    },
+    done: function(e, data) {
+      console.log(data.result.files[0][0].url);
+      $('#user_documents_documents').val($('#user_documents_documents').val() + ';' +  data.result.files[0][0].url);
+
+      data.context
+        .addClass("done")
+        .find("a")
+        .prop("href", data.result.files[0][0].url);
+    }
+  });
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // FIM DO ENVIO DE DOCUMENTOS
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // ENVIO DO FORM
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  document.querySelector("#submitButton").addEventListener("click", function(event){
+    event.preventDefault();
+    SubmitForm();
+  });
+
+  function SubmitForm(){
+
+    // monta json
+    var formData = {};
+    formData["full_name"] = document.querySelector('#inputFullName').value;
+    formData["email"] = document.querySelector('#inputEmail').value;
+    formData["country"] = document.querySelector('#inputCountry').value;
+    formData["birthday"] = document.querySelector('#inputBirthday').value;
+    formData["mobile_number"] = document.querySelector('#inputMobile').value;
+    formData["cpf"] = document.querySelector('#inputCPF').value;
+    formData["password"] = document.querySelector('#inputPassword').value;
+    formData["user_documents"] = document.querySelector('#user_documents_documents').value;
+    console.log(formData);
+
+    // ajax
+    $.ajax({
+      url: "http://localhost:3000/api/v1/users/",
+      type: 'post',
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function(data){
+        // sucesso no cadastro - direcionar usuario para pagina de sucesso
+        alert('cadastro feito');
+        console.log(data);
+      },
+      error: function(data){
+        // erro no cadastro - data['responseText'] possui os erros
+        alert(data['responseText']);
+        console.log(data);
+      },
+      data: JSON.stringify(formData)
+    })
+
+    return false;
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // FIM DO ENVIO DO FORM
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+</script>
+
+</html>
