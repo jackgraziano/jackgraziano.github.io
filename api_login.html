@@ -45,13 +45,13 @@
     // ajax
     $.ajax({
       url: "https://app.moss.earth/api/v1/sessions",
+      //url: "http://localhost:3000/api/v1/sessions",
       type: 'post',
       dataType: 'json',
       contentType: 'application/json',
       success: function(data){
         // sucesso no cadastro - direcionar usuario para pagina de sucesso
-        console.log(data)
-        //window.location.href = "https://app.moss.earth/?auth_token=" + data["auth_token"];
+        window.location.href = "https://app.moss.earth/?auth_token=" + data["auth_token"];
       },
       error: function(data){
         // erro no cadastro - data['responseText'] possui os erros
