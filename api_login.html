@@ -41,7 +41,6 @@
     var formData = {};
     formData["email"] = document.querySelector('#inputEmail').value;
     formData["password"] = document.querySelector('#inputPassword').value;
-    console.log(formData);
 
     // ajax
     $.ajax({
@@ -51,9 +50,7 @@
       contentType: 'application/json',
       success: function(data){
         // sucesso no cadastro - direcionar usuario para pagina de sucesso
-        alert('login realizado');
-        window.location.href = "https://app.moss.earth";
-        console.log(data);
+        window.location.href = "https://app.moss.earth/?auth_token=" + data["auth_token"];
       },
       error: function(data){
         // erro no cadastro - data['responseText'] possui os erros
