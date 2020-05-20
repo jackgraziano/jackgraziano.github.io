@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+	<h1>Exemplo de uso da api de login</h1>
+
+
+	<div class="container">
+	    <form id="formCadastro">
+
+	   		<div class="form-group">
+	        	<label>Email</label>
+	        	<input type="email" class="form-control" id="inputEmail" placeholder="Email">
+	      	</div>
+
+		      <div class="form-group">
+		        <label>Password</label>
+		        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+		      </div>
+
+	      <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+	    </form>
+    </div>
+
+<script type="text/javascript">
+  document.querySelector("#submitButton").addEventListener("click", function(event){
+    event.preventDefault();
+    SubmitForm();
+  });
+
+  function SubmitForm(){
+
+    // monta json
+    var formData = {};
+    formData["email"] = document.querySelector('#inputEmail').value;
+    formData["password"] = document.querySelector('#inputPassword').value;
+    console.log(formData);
+
+    // ajax
+    $.ajax({
+      url: "https://app.moss.earth/api/v1/sessions",
+      type: 'post',
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function(data){
+        // sucesso no cadastro - direcionar usuario para pagina de sucesso
+        alert('login realizado');
+        console.log(data);
+      },
+      error: function(data){
+        // erro no cadastro - data['responseText'] possui os erros
+        alert('login incorreto');
+        console.log(data);
+      },
+      data: JSON.stringify(formData)
+    })
+
+    return false;
+  }
+	
+
+</script>
+
+</body>
+</html>
