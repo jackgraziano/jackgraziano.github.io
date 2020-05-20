@@ -50,7 +50,8 @@
       contentType: 'application/json',
       success: function(data){
         // sucesso no cadastro - direcionar usuario para pagina de sucesso
-        window.location.href = "https://app.moss.earth/?auth_token=" + data["auth_token"];
+        console.log(data)
+        //window.location.href = "https://app.moss.earth/?auth_token=" + data["auth_token"];
       },
       error: function(data){
         // erro no cadastro - data['responseText'] possui os erros
